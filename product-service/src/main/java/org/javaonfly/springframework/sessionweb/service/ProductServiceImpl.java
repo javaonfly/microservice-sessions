@@ -23,15 +23,11 @@ public class ProductServiceImpl implements IProductService {
 	@Autowired
 	ProductMapper productMapper;
 
-
 	@Override
 	public List<ProductDTO> getProducts() {
 		log.info("Getting all data");
 		List<ProductDTO> products = new ArrayList<>();
-		productRepository.findAll().forEach(prod -> {
-			ProductDTO productDTO = productMapper.getDTOFromDAO(prod);
-			products.add(productDTO);
-		});
+		productRepository.findAll().forEach(prod -> products.add(productMapper.getDTOFromDAO(prod)));
 		return products;
 	}
 

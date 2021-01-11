@@ -16,16 +16,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @ExternalDocumentation(description = "This is product object")
-public class ProductDTO extends EntityModel<ProductDTO> {
+public class ProductDTO extends EntityModel<ProductDTO>{
 
 	private long id;
 	@Size(min = 4, message = "Name should be greater than 4 charecters")
 	private String name;
-
+	
+	
 	@NotNull(message = "Description should not be empty")
 	private String description;
 	private double price;
-
-	private String discount;
 
 }
