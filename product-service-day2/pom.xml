@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.javaonfly.springframework</groupId>
-	<artifactId>product-service</artifactId>
+	<artifactId>day2-product-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>product-service</name>
+	<name>day2-product-service</name>
 	<description>Product Service project with Spring Boot</description>
 
 	<properties>

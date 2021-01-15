@@ -1,6 +1,5 @@
 package org.javaonfly.springframework.sessionweb;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -13,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest
+@ContextConfiguration
 class ProductControllerTest {
 
 	@Autowired
@@ -31,16 +32,17 @@ class ProductControllerTest {
 
 	@Test
 	void testGetProducts() throws Exception {
-		mockMvc.perform(get("/api/v1/product/").accept(MediaType.APPLICATION_JSON)).andExpect(status().is(200));
+		mockMvc.perform(get("/api/v1/products/").accept(MediaType.APPLICATION_JSON)).andExpect(status().is(200));
 	}
 
 	@Test
 	void testPostProducts() throws Exception {
-		ProductDTO product = ProductDTO.builder().name("TestProduct").description("This is test product").build();
+		ProductDTO product = ProductDTO.builder().name("TestProduct").description("This is test product")
+				.price(123d).discount("").build();
 		String input = objectMapper.writeValueAsString(product);
 		System.out.println("Pass ing " + input);
 		when(productService.createProduct(product)).thenReturn(product);
-		mockMvc.perform(post("/api/v1/product/").contentType(MediaType.APPLICATION_JSON).content(input))
+		mockMvc.perform(post("/api/v1/products/").contentType(MediaType.APPLICATION_JSON).content(input))
 				.andExpect(status().is(201));
 	}
 

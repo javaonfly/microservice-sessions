@@ -35,7 +35,7 @@ public class ProductController {
 	Logger LOGGER = LoggerFactory.getLogger("ProductController");
 
 	@Operation(description = "Returns all the products")
-	@GetMapping("/")
+	@GetMapping("")
 	public ResponseEntity<List<ProductDTO>> getProducts() {
 		List<ProductDTO> productList = productService.getProducts();
 		return new ResponseEntity<List<ProductDTO>>(productList, HttpStatus.OK);
@@ -54,7 +54,7 @@ public class ProductController {
 		return new ResponseEntity<ProductDTO>(product, HttpStatus.OK);
 	}
 
-	@PostMapping("/")
+	@PostMapping("")
 	public ResponseEntity addProduct(@Validated @RequestBody ProductDTO product) {
 		ProductDTO productResult = productService.createProduct(product);
 		HttpHeaders headers = new HttpHeaders();
