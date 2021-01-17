@@ -1,6 +1,6 @@
 
 
-Day2
+Day2 Items Covered
 
     1. Add a new Config Server and Configure it use the GIT location for accessing properties file
     2. Update the product service to fetch a properties from Config Server and use a specific profile.
