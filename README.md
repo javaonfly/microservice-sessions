@@ -18,15 +18,16 @@ Day2
     14. Show Re-Routing in Cloud Gateway
     15. Show Server loadbalancing using Cloud Gateway
 
-Assignments:- 
-    1) Create an EmployeeDashboard application which call EmployeeService to get Employee details.
-    2) Enable Failfast approach in Employee-Dashboard Service when Config server is down. Which means Product-server should startup if config-server is not running.
-    3) Update a properties in the config service and see the effect in EmployeeDashboard application without restarting the application 
-           (The Curl command to be used is
-               curl http://localhost:<actual port>/actuator/refresh -d {} -H "Content-Type: application/json"
-    4) Introduce a fallback mechanism in Employee Dashboard Service to populate with dummy data. 
-    5) Start multiple instance of EmployeeService, In the Employee Description the server port of the Employee Service. (Use Environment as used in Dummy controller in product-service) and check the Client Loadbalancing in act. 
-    6) Add one more path in the Employee Rest Service as /api/v2/employee 
-        Introduce Canary Deployment though API Gateway
-       go through the link
-       https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#the-weight-route-predicate-factory
+Assignments:-
+
+    1. Create an EmployeeDashboard application which call EmployeeService to get Employee details.
+    2. Enable Failfast approach in Employee-Dashboard Service when Config server is down. Which means Product-server should startup if config-server is not running.
+    3. Update a properties in the config service and see the effect in EmployeeDashboard application without restarting the application 
+    4. (The Curl command to be used is
+    5. curl http://localhost:<actual port>/actuator/refresh -d {} -H "Content-Type: application/json"
+    6. Introduce a fallback mechanism in Employee Dashboard Service to populate with dummy data. 
+    7. Start multiple instance of EmployeeService, In the Employee Description the server port of the Employee Service. (Use Environment as used in Dummy controller in product-service) and check the Client Loadbalancing in act. 
+    8. Add one more path in the Employee Rest Service as /api/v2/employee 
+    9.  Introduce Canary Deployment though API Gateway
+    10. go through the link
+    11. https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#the-weight-route-predicate-factory 
