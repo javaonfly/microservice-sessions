@@ -1,33 +1,29 @@
 
 
-Day2 Items Covered
+Day3 Items Covered
 
-    1. Add a new Config Server and Configure it use the GIT location for accessing properties file
-    2. Update the product service to fetch a properties from Config Server and use a specific profile.
-    3. Update a properties in the Config Server and see that its getting updated in the Config Server and Product Service without any restart
-    4. Introduce Eureka Server
-    5. Allow Product Server to get registered with Eureka Server
-    6. Add Rest client with Rest Template and access product service with direct ip address
-    7. Update the Rest Template to access the product Service through Eureka rather than direct access
-    8. Introduce Feign Client
-    9. Add Logging for Feign Client
-    10. Add Resilience4j circuit breaker to Feign Client
-    11. Add a Cloud Gateway and add route for Product Service
-    12. Add a header in the response via Cloud Gateway
-    13. Add a circuit breaker in the Cloud Gateway
-    14. Show Re-Routing in Cloud Gateway
-    15. Show Server loadbalancing using Cloud Gateway
+  1. CQRS Implementation with AXON.
+  2. Down load Axon server from https://axoniq.io/product-overview/axon-framework
+  3. Start axon by going to down load location the locate axonserver.jar
+  4. Start axonn server using java -jar axonserver.jar command
+  5. Run EmplyeeCQRS in  command profile mode by opening 
+  #spring.profiles.active=Command
+  #server.port:9092
+  6. Runn EmployeeCQRS in quer profile mode by
+  spring.profiles.active=Query
+  server.port:9093
+  
+  7. Use http://localhost:9092/swagger-ui.html to craete and update employee
+  8. Use http://localhost:9093/swagger-ui.html to see the applied events on a agrregrate
+  
+  
 
 Assignments:-
 
-    1. Create an EmployeeDashboard application which call EmployeeService to get Employee details.
-    2. Enable Failfast approach in Employee-Dashboard Service when Config server is down. Which means Product-server should startup if config-server is not running.
-    3. Update a properties in the config service and see the effect in EmployeeDashboard application without restarting the application 
-    4. (The Curl command to be used is
-    5. curl http://localhost:<actual port>/actuator/refresh -d {} -H "Content-Type: application/json"
-    6. Introduce a fallback mechanism in Employee Dashboard Service to populate with dummy data. 
-    7. Start multiple instance of EmployeeService, In the Employee Description the server port of the Employee Service. (Use Environment as used in Dummy controller in product-service) and check the Client Loadbalancing in act. 
-    8. Add one more path in the Employee Rest Service as /api/v2/employee 
-    9.  Introduce Canary Deployment though API Gateway
-    10. go through the link
-    11. https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#the-weight-route-predicate-factory 
+  1. Create Account CQRS implementation using AXON
+  2. Create a Account aggregrator with accoint id account amoiunt and account holder name, Account state.
+  3. Three command will be there Account create commad, Credited command , Debited command, Hold Command
+  4. If Balance of account less than 500 it will be fore Hold evenet and account state will be marked hold.
+  5. In other cases account state is active.
+  6. Show the event applied on a account in query.
+  
