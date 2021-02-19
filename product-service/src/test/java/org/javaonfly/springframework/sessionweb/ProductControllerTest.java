@@ -31,7 +31,7 @@ class ProductControllerTest {
 
 	@Test
 	void testGetProducts() throws Exception {
-		mockMvc.perform(get("/api/v1/products/").accept(MediaType.APPLICATION_JSON)).andExpect(status().is(200));
+		mockMvc.perform(get("/api/v1/product/").accept(MediaType.APPLICATION_JSON)).andExpect(status().is(200));
 	}
 
 	@Test
@@ -40,7 +40,7 @@ class ProductControllerTest {
 		String input = objectMapper.writeValueAsString(product);
 		System.out.println("Pass ing " + input);
 		when(productService.createProduct(product)).thenReturn(product);
-		mockMvc.perform(post("/api/v1/products/").contentType(MediaType.APPLICATION_JSON).content(input))
+		mockMvc.perform(post("/api/v1/product/").contentType(MediaType.APPLICATION_JSON).content(input))
 				.andExpect(status().is(201));
 	}
 

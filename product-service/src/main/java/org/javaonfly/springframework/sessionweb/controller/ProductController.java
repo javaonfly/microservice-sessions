@@ -1,5 +1,8 @@
 package org.javaonfly.springframework.sessionweb.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 
 import org.javaonfly.springframework.sessionweb.dto.ProductDTO;
@@ -20,11 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.Operation;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
@@ -34,27 +32,23 @@ public class ProductController {
 
 	Logger LOGGER = LoggerFactory.getLogger("ProductController");
 
-	@Operation(description = "Returns all the products")
+	
 	@GetMapping()
 	public ResponseEntity<List<ProductDTO>> getProducts() {
 		List<ProductDTO> productList = productService.getProducts();
 		return new ResponseEntity<List<ProductDTO>>(productList, HttpStatus.OK);
 	}
 
-	@Operation(description = "Returns the product based on the given id")
+
 	@GetMapping("/{productId}")
 	public ResponseEntity<ProductDTO> getProduct(@PathVariable("productId") Long productId) {
 
 		ProductDTO product = productService.getProduct(productId);
-		/*
-		 * WebMvcLinkBuilder linkToAll =
-		 * linkTo(methodOn(this.getClass()).getProducts());
-		 * product.add(linkToAll.withRel("all-products"));
-		 * 
-		 * WebMvcLinkBuilder linkToSelf =
-		 * linkTo(methodOn(this.getClass()).getProduct(productId));
-		 * product.add(linkToSelf.withRel("self-link"));
-		 */
+		WebMvcLinkBuilder linkToAll = linkTo(methodOn(this.getClass()).getProducts());
+		product.add(linkToAll.withRel("all-products"));
+
+		WebMvcLinkBuilder linkToSelf = linkTo(methodOn(this.getClass()).getProduct(productId));
+		product.add(linkToSelf.withRel("self-link"));
 		return new ResponseEntity<ProductDTO>(product, HttpStatus.OK);
 	}
 
