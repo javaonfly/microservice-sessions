@@ -5,6 +5,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.hateoas.EntityModel;
 
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductDTO extends EntityModel<ProductDTO> {
+@ExternalDocumentation(description = "This is product object")
+public class ProductDTO /* extends EntityModel<ProductDTO> */{
 
 	private long id;
 	@Size(min = 4, message = "Name should be greater than 4 charecters")

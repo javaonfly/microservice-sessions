@@ -1,0 +1,33 @@
+version : "3.8"
+services : 
+    order-service :
+            build : ./orderservice
+            ports :
+                    - 8080:8080
+            links:
+                - eureka-server:eureka-server
+                - product-service:product-service
+    config-server :
+            build: ./configserver
+            volumes :
+                    - config-data:/config-properties
+    eureka-server :
+            build: ./eureka-server
+            environment: 
+                - EUREKA_KEY=EUREKA_VALUE
+    product-service :
+            build : ./product-service
+            links: 
+                - eureka-server:eureka-server
+                - config-server:config-server
+            deploy:
+                replicas: 2
+
+
+volumes:
+  config-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /EBS/Web-Sessions/GIT_HUB/config-properties
